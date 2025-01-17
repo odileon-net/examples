@@ -1,6 +1,5 @@
 # -----------------------------------------------------------------------------
-# Author: Jelle Vandekerckhove
-# Firm: Odileon
+# Author: Jelle Vandekerckhove (Odileon)
 # Description: 
 # This Terraform configuration demonstrates how to configure AWS CloudFront 
 # to support HTTPS enforcement while allowing Let's Encrypt ACME HTTP 
