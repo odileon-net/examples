@@ -1,0 +1,15 @@
+---
+app:
+  image:
+    repository: myrepo
+    tag: latest
+
+  ingress:
+    host: "example.com"
+    whitelist:
+      enabled: true
+      ipList:
+        - name: "The Office"
+          value: "10.0.0.1/8"
+        - name: "My grandmothers Windows XP machine"
+          value: "192.168.1.36/32"
