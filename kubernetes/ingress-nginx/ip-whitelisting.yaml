@@ -1,0 +1,28 @@
+# -----------------------------------------------------------------------------
+# Author: Jelle Vandekerckhove (Odileon)
+# Description: 
+# This Kubernetes manifest demonstrates how to configure an ip whitelist on a
+# ingress (ingress-nginx) resource.
+# 
+# Feel free to use this configuration as a reference. Pull requests and 
+# suggestions are welcome! 
+# -----------------------------------------------------------------------------
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/whitelist-source-range: "192.168.1.1/24,10.0.0.0/8"
+spec:
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: example-service
+                port:
+                  number: 80
