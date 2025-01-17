@@ -7,7 +7,7 @@
 # Feel free to use this configuration as a reference. Pull requests and 
 # suggestions are welcome! 
 # -----------------------------------------------------------------------------
-
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
