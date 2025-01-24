@@ -1,0 +1,55 @@
+---
+replicaCount: 1
+
+image:
+  repository: redis
+  tag: latest
+
+service:
+  port: 6379
+  targetPort: 6379
+
+containers:
+  containerPort: 6379
+  imagePullPolicy: "Always"
+
+  livenessProbe:
+    enabled: false
+
+  readinessProbe:
+    enabled: false
+
+  startupProbe:
+    enabled: false
+
+resources:
+  limits:
+    cpu: 10m
+    memory: 75Mi
+  requests:
+    cpu: 3m
+    memory: 25Mi
+
+hpa:
+  enabled: false
+  maxReplicas: 0
+  metrics:
+    cpu:
+      enabled: true
+      averageUtilization: 75
+    memory:
+      enabled: true
+      averageUtilization: 75
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+secrets:
+
+config:
+  maxmemory: 50mb
+  maxmemory-policy: allkeys-lfu

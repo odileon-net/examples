@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.Release.Name}}
+  labels:
+    app: {{.Release.Name}}
+spec:
+  replicas: {{.Values.replicaCount | default 1}}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit | default 2 }}
+  selector:
+    matchLabels:
+      app: {{.Release.Name}}
+  template:
+    metadata:
+      labels:
+        app: {{.Release.Name}}
+    spec:
+      containers:
+        - name: {{.Release.Name}}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["redis-server", "/etc/redis/redis.conf"]
+          volumeMounts:
+            - name: redis-config-volume
+              mountPath: /etc/redis
+          imagePullPolicy: {{ .Values.containers.imagePullPolicy | default "IfNotPresent" }}
+          ports:
+            - containerPort: {{ .Values.containers.containerPort }}
+          {{- if .Values.containers.livenessProbe.enabled }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+      volumes:
+      - name: redis-config-volume
+        configMap:
+          name: {{.Release.Name}}-redis-cm

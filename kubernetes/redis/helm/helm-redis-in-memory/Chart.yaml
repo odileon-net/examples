@@ -1,0 +1,14 @@
+---
+apiVersion: v2
+name: helm-redis-in-memory
+description: A Helm chart for an in-memory redis deployment.
+
+type: application
+
+version: 1.0.0
+
+appVersion: "1.0.0"
+
+maintainers:
+  - name: Jelle Vandekerckhove
+    email: jelle@odileon.net
